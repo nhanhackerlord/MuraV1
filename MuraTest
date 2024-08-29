@@ -203,16 +203,16 @@ _G.ShowItem = {
 
 function LoadSettings()
 if readfile and writefile and isfile and isfolder then
-if not isfolder("MuraHub") then
-makefolder("MuraHub")
+if not isfolder("MinSave") then
+makefolder("MinSave")
 end
-if not isfolder("MuraHub/Blox Fruits/") then
-makefolder("MuraHub/Blox Fruits/")
+if not isfolder("MinSave/Blox Fruits/") then
+makefolder("MinSave/Blox Fruits/")
 end
-if not isfile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
-writefile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
+if not isfile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+writefile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(_G.Settings))
 else
-  local Decode = game:GetService("HttpService"):JSONDecode(readfile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
+  local Decode = game:GetService("HttpService"):JSONDecode(readfile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
 for i,v in pairs(Decode) do
 _G.Settings[i] = v
 end
@@ -224,15 +224,15 @@ end
 
 function SaveSettings()
 if readfile and writefile and isfile and isfolder then
-if not isfile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
+if not isfile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json") then
 LoadSettings()
 else
-  local Decode = game:GetService("HttpService"):JSONDecode(readfile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
+  local Decode = game:GetService("HttpService"):JSONDecode(readfile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json"))
 local Array = {}
 for i,v in pairs(_G.Settings) do
 Array[i] = v
 end
-writefile("MuraHub/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
+writefile("MinSave/Blox Fruits/" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
 end
 else
   return warn("Status : Undetected Executor")
